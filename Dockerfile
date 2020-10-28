@@ -4,10 +4,10 @@ RUN mkdir /app
 WORKDIR /app
 
 # Download dependencies once, not every build
-COPY pom.xml pom.xml
+COPY ./auction-challenge/pom.xml pom.xml
 RUN mvn dependency:resolve compile package
 
-COPY src src
+COPY ./auction-challenge/src src
 RUN mvn compile package
 
-CMD ["java", "-jar", "target/Result-1.0.SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "target/auction-challenge-1.0-SNAPSHOT-jar-with-dependencies.jar"]
